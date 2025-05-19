@@ -1,9 +1,10 @@
 import { Text, View } from "react-native";
-
+import { Link } from "expo-router";
 export default function Index() {
   return (
-    <View className="flex-1 items-center justify-center bg-blue-500">
-      <Text className="text-3xl font-bold text-red-500">AYYYYOOOOO</Text>
+    <View className="flex-1 items-center justify-center">
+      <Text className="text-5xl font-bold text-primary">Welcome</Text>
+     
     </View>
   );
-}
+ }
