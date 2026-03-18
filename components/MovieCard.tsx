@@ -1,5 +1,6 @@
 import { Link } from "expo-router";
-import { Text, Image, TouchableOpacity, View } from "react-native";
+import { Image } from "expo-image";
+import { Text, TouchableOpacity, View } from "react-native";
 
 import { icons } from "@/constants/icons";
 
@@ -20,7 +21,8 @@ const MovieCard = ({
               : "https://placehold.co/600x400/1a1a1a/FFFFFF.png",
           }}
           className="w-full h-52 rounded-lg"
-          resizeMode="cover"
+          contentFit="cover"
+          transition={0}
         />
 
         <Text className="text-sm font-bold text-white mt-2" numberOfLines={1}>
