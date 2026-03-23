@@ -1,8 +1,11 @@
 import { Link } from "expo-router";
 import { Image } from "expo-image";
 import { Text, TouchableOpacity, View } from "react-native";
+import { cssInterop } from "nativewind";
 
 import { icons } from "@/constants/icons";
+
+cssInterop(Image, { className: "style" });
 
 const MovieCard = ({
   id,

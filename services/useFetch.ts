@@ -18,11 +18,11 @@ const useFetch = <T>(fetchFunction: () => Promise<T>, autoFetch = true) => {
       setLoading(false);
     }
   }, []);
-  const reset = () => {
+  const reset = useCallback(() => {
     setData(null);
     setError(null);
     setLoading(false);
-  };
+  }, []);
     useEffect(() => {
     if (autoFetch) {
       fetchData();
