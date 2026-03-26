@@ -20,11 +20,13 @@ const InfoRow = ({ label, value }: { label: string; value: string }) => (
 );
 
 const MovieDetails = () => {
-  const { id } = useLocalSearchParams();
+  const { id } = useLocalSearchParams<{ id: string }>();
 
-  const { data: movie, loading, error } = useFetch(() =>
-    fetchMovieDetails(id as string)
-  );
+  const {
+    data: movie,
+    loading,
+    error,
+  } = useFetch(() => fetchMovieDetails(id), !!id);
 
   if (loading) {
     return (
@@ -102,7 +104,10 @@ const MovieDetails = () => {
               {movie.title}
             </Text>
             {movie.tagline ? (
-              <Text className="text-light-200 text-xs italic mt-1" numberOfLines={2}>
+              <Text
+                className="text-light-200 text-xs italic mt-1"
+                numberOfLines={2}
+              >
                 "{movie.tagline}"
               </Text>
             ) : null}
@@ -126,7 +131,9 @@ const MovieDetails = () => {
           <View className="flex-row flex-wrap gap-2 px-5 mt-4">
             {movie.genres.map((g) => (
               <View key={g.id} className="bg-dark-100 rounded-full px-3 py-1">
-                <Text className="text-accent text-xs font-semibold">{g.name}</Text>
+                <Text className="text-accent text-xs font-semibold">
+                  {g.name}
+                </Text>
               </View>
             ))}
           </View>
@@ -135,8 +142,12 @@ const MovieDetails = () => {
         {/* Overview */}
         {movie.overview ? (
           <View className="px-5 mt-5">
-            <Text className="text-white font-bold text-base mb-2">Overview</Text>
-            <Text className="text-light-200 text-sm leading-5">{movie.overview}</Text>
+            <Text className="text-white font-bold text-base mb-2">
+              Overview
+            </Text>
+            <Text className="text-light-200 text-sm leading-5">
+              {movie.overview}
+            </Text>
           </View>
         ) : null}
 
