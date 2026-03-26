@@ -7,6 +7,7 @@ import { fetchMovies } from "@/services/api";
 import useFetch from "@/services/useFetch";
 import SearchBar from "@/components/SearchBar";
 import { icons } from "@/constants/icons";
+import { updateSearchCount } from "@/services/appwrite";
 
 const Search = () => {
   const [searchQuery, setSearchQuery] = useState("");
@@ -23,6 +24,10 @@ const Search = () => {
     const timer = setTimeout(async () => {
       if (searchQuery.trim()) {
         await loadMovies();
+
+        if (movies?.length > 0 && movies?.[0]) {
+          await updateSearchCount(searchQuery, movies[0]);
+        }
       } else {
         resetMovies();
       }
@@ -94,7 +99,7 @@ const Search = () => {
                   : "Start typing to search for movies..."}
               </Text>
             </View>
-          ): null
+          ) : null
         }
       />
     </View>
