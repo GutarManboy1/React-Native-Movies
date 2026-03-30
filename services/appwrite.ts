@@ -50,8 +50,11 @@ export const getTrendingMovies = async (): Promise<
     ]);
 
     return result.documents as unknown as TrendingMovie[];
+  //     What it means in practice: You're telling TypeScript "trust me, these Appwrite documents have the shape of TrendingMovie". TypeScript takes your word for
+  //  it — there's no runtime check. If the actual data from Appwrite doesn't match TrendingMovie, you'd get a runtime error, not a compile-time one.
   } catch (error) {
     console.error(error);
     return undefined;
   }
 };
+
