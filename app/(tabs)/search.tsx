@@ -23,10 +23,10 @@ const Search = () => {
   useEffect(() => {
     const timer = setTimeout(async () => {
       if (searchQuery.trim()) {
-        await loadMovies();
+        const results = await loadMovies();
 
-        if (movies?.length > 0 && movies?.[0]) {
-          await updateSearchCount(searchQuery, movies[0]);
+        if (results?.length > 0 && results[0]) {
+          await updateSearchCount(searchQuery, results[0]);
         }
       } else {
         resetMovies();
