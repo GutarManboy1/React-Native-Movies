@@ -1,5 +1,5 @@
 import { View, Text, Image, FlatList, ActivityIndicator } from "react-native";
-import React, { useEffect, useState } from "react";
+import React, { use, useEffect, useState } from "react";
 import { images } from "@/constants/images";
 import MovieCard from "@/components/MovieCard";
 
@@ -24,10 +24,6 @@ const Search = () => {
     const timer = setTimeout(async () => {
       if (searchQuery.trim()) {
         const results = await loadMovies();
-
-        if (results?.length > 0 && results[0]) {
-          await updateSearchCount(searchQuery, results[0]);
-        }
       } else {
         resetMovies();
       }
@@ -35,6 +31,12 @@ const Search = () => {
 
     return () => clearTimeout(timer);
   }, [searchQuery, loadMovies, resetMovies]);
+
+  useEffect(() => {
+    if (movies?.length > 0 && movies[0]) {
+      updateSearchCount(searchQuery, movies[0]);
+    }
+  }, [movies]);
 
   return (
     <View className="flex-1 bg-primary">
