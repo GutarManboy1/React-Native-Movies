@@ -11,6 +11,7 @@ import { useLocalSearchParams, router } from "expo-router";
 import useFetch from "@/services/useFetch";
 import { fetchMovieDetails } from "@/services/api";
 import { icons } from "@/constants/icons";
+import { useSavedMovies } from "@/context/SavedMoviesContext";
 
 const InfoRow = ({ label, value }: { label: string; value: string }) => (
   <View className="flex-row items-start gap-x-2 mb-2">
@@ -27,6 +28,30 @@ const MovieDetails = () => {
     loading,
     error,
   } = useFetch(() => fetchMovieDetails(id), !!id);
+
+  const { isSaved, toggleSave } = useSavedMovies();
+
+  const saved = movie ? isSaved(movie.id) : false;
+
+  const handleToggleSave = () => {
+    if (!movie) return;
+    toggleSave({
+      id: movie.id,
+      title: movie.title,
+      poster_path: movie.poster_path ?? "",
+      vote_average: movie.vote_average,
+      release_date: movie.release_date,
+      adult: movie.adult,
+      backdrop_path: movie.backdrop_path ?? "",
+      genre_ids: movie.genres.map((g) => g.id),
+      original_language: movie.original_language,
+      original_title: movie.original_title,
+      overview: movie.overview ?? "",
+      popularity: movie.popularity,
+      video: movie.video,
+      vote_count: movie.vote_count,
+    });
+  };
 
   if (loading) {
     return (
@@ -84,6 +109,18 @@ const MovieDetails = () => {
             source={icons.arrow}
             className="size-5"
             style={{ tintColor: "#D6C7FF", transform: [{ rotate: "180deg" }] }}
+          />
+        </TouchableOpacity>
+
+        {/* Save button */}
+        <TouchableOpacity
+          onPress={handleToggleSave}
+          className="absolute top-12 right-5 bg-dark-200 rounded-full p-2 z-10"
+        >
+          <Image
+            source={icons.save}
+            className="size-5"
+            tintColor={saved ? "#AB8BFF" : "#A8B5DB"}
           />
         </TouchableOpacity>
 
