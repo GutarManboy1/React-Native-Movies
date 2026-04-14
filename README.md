@@ -1,3 +1,12 @@
+<img width="585" height="1266" alt="Image" src="https://github.com/user-attachments/assets/07729e6d-7a34-495f-9073-1677f0f01adc" />
+
+<img width="585" height="1266" alt="Image" src="https://github.com/user-attachments/assets/c914546c-3215-42c5-a87e-ec4c02ceafcb" />
+Shin Gojira!
+
+<img width="585" height="1266" alt="Image" src="https://github.com/user-attachments/assets/cb944129-ac5d-4145-a34a-73ffa9deb1f9" />
+
+<img width="585" height="1266" alt="Image" src="https://github.com/user-attachments/assets/792c3761-8949-4e1c-be1b-1b6c4a75e3ff" />
+
 <<<<<<< HEAD
 # Welcome to your Expo app 👋
 
